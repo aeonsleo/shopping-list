@@ -22,3 +22,6 @@ use Illuminate\Http\Request;
 Route::get('/test', function() {
     return 'Working!';
 });
+
+Route::apiResource('shoppinglists', 'ShoppingListController');
+Route::apiResource('shoppinglists.listitems', 'ListItemController');
