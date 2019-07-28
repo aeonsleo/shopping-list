@@ -1778,11 +1778,14 @@ __webpack_require__.r(__webpack_exports__);
       editListOffset: -1
     };
   },
+  props: {
+    appUrl: null
+  },
   methods: {
     getLists: function getLists() {
       var _this = this;
 
-      axios.get('http://localhost/api/shoppinglists').then(function (response) {
+      axios.get('/api/shoppinglists').then(function (response) {
         console.log(response.data);
         _this.shoppingLists = response.data;
       });
@@ -1791,7 +1794,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       console.log('list.id : ' + id);
-      axios.get('http://localhost/api/shoppinglists/' + id).then(function (response) {
+      axios.get('/api/shoppinglists/' + id).then(function (response) {
         console.log(response.data);
         _this2.shoppingList = response.data;
         _this2.renderType = 'detail';
@@ -1804,7 +1807,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var listName = this.newList.charAt(0).toUpperCase() + this.newList.slice(1);
-      axios.post('http://localhost/api/shoppinglists/', {
+      axios.post('/api/shoppinglists/', {
         'name': listName
       }).then(function (response) {
         _this3.getLists();
@@ -1824,7 +1827,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       var editListName = this.editList.name.charAt(0).toUpperCase() + this.editList.name.slice(1);
-      axios.put('http://localhost/api/shoppinglists/' + this.editList.id, {
+      axios.put('/api/shoppinglists/' + this.editList.id, {
         'name': editListName
       }).then(function (response) {
         _this4.editListOffset = -1;
@@ -1836,7 +1839,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       var itemName = this.newItem.charAt(0).toUpperCase() + this.newItem.slice(1);
-      axios.post('http://localhost/api/shoppinglists/' + this.shoppingList.id + '/listitems/', {
+      axios.post('/api/shoppinglists/' + this.shoppingList.id + '/listitems/', {
         'name': itemName
       }).then(function (response) {
         _this5.getList(_this5.shoppingList.id);
@@ -1846,14 +1849,14 @@ __webpack_require__.r(__webpack_exports__);
     deleteList: function deleteList(listId) {
       var _this6 = this;
 
-      axios["delete"]('http://localhost/api/shoppinglists/' + listId).then(function (response) {
+      axios["delete"]('/api/shoppinglists/' + listId).then(function (response) {
         _this6.getLists();
       });
     },
     deleteItem: function deleteItem(itemId) {
       var _this7 = this;
 
-      axios["delete"]('http://localhost/api/shoppinglists/' + this.shoppingList.id + '/listitems/' + itemId).then(function (response) {
+      axios["delete"]('/api/shoppinglists/' + this.shoppingList.id + '/listitems/' + itemId).then(function (response) {
         _this7.getList(_this7.shoppingList.id);
       });
     }

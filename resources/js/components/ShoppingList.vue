@@ -85,7 +85,7 @@ export default {
     },
     methods: {
         getLists() {
-            axios.get('http://localhost/api/shoppinglists')
+            axios.get('/api/shoppinglists')
                 .then(response => {
                     console.log(response.data)
                     this.shoppingLists = response.data
@@ -94,7 +94,7 @@ export default {
         getList(id) {
             console.log('list.id : ' + id)
 
-            axios.get('http://localhost/api/shoppinglists/'+id)
+            axios.get('/api/shoppinglists/'+id)
                 .then(response => {
                     console.log(response.data)
                     this.shoppingList = response.data
@@ -107,7 +107,7 @@ export default {
         addList() {
             let listName = this.newList.charAt(0).toUpperCase()+this.newList.slice(1)
 
-            axios.post('http://localhost/api/shoppinglists/', {'name': listName})
+            axios.post('/api/shoppinglists/', {'name': listName})
                 .then(response => {
                     this.getLists()
                 })            
