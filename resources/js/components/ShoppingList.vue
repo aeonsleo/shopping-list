@@ -115,6 +115,7 @@ export default {
 
             axios.post('/api/shoppinglists/', {'name': listName})
                 .then(response => {
+                    console.log(response.data)
                     this.getLists()
                 })      
                 .catch(error => {
