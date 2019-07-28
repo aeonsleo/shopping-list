@@ -80,6 +80,9 @@ export default {
             editListOffset: -1,
         }
     },
+    props: {
+        appUrl: null,
+    },
     methods: {
         getLists() {
             axios.get('http://localhost/api/shoppinglists')
@@ -124,7 +127,7 @@ export default {
         updateList() {
             let editListName = this.editList.name.charAt(0).toUpperCase()+this.editList.name.slice(1)
 
-            axios.put('http://localhost/api/shoppinglists/'+this.editList.id, {'name': editListName})
+            axios.put('/api/shoppinglists/'+this.editList.id, {'name': editListName})
                 .then(response => {
                     this.editListOffset = -1
                     this.getLists()
@@ -133,7 +136,7 @@ export default {
         addItem() {
             let itemName = this.newItem.charAt(0).toUpperCase()+this.newItem.slice(1)
 
-            axios.post('http://localhost/api/shoppinglists/'+this.shoppingList.id+'/listitems/', {'name': itemName})
+            axios.post('/api/shoppinglists/'+this.shoppingList.id+'/listitems/', {'name': itemName})
                 .then(response => {
                     this.getList(this.shoppingList.id)
                 })            
@@ -141,13 +144,13 @@ export default {
             this.newItem = null
         },
         deleteList(listId) {
-            axios.delete('http://localhost/api/shoppinglists/'+listId)
+            axios.delete('/api/shoppinglists/'+listId)
                 .then(response => {
                     this.getLists()
                 })                        
         },
         deleteItem(itemId) {
-            axios.delete('http://localhost/api/shoppinglists/'+this.shoppingList.id+'/listitems/'+itemId)
+            axios.delete('/api/shoppinglists/'+this.shoppingList.id+'/listitems/'+itemId)
                 .then(response => {
                     this.getList(this.shoppingList.id)
                 })                        
