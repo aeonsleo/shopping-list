@@ -90,6 +90,9 @@ export default {
                     console.log(response.data)
                     this.shoppingLists = response.data
                 })
+                .catch(error => {
+                    console.log(error)
+                })
         },
         getList(id) {
             console.log('list.id : ' + id)
@@ -99,6 +102,9 @@ export default {
                     console.log(response.data)
                     this.shoppingList = response.data
                     this.renderType = 'detail'
+                })
+                .catch(error => {
+                    console.log(error)
                 })
         },
         back() {
@@ -110,7 +116,10 @@ export default {
             axios.post('/api/shoppinglists/', {'name': listName})
                 .then(response => {
                     this.getLists()
-                })            
+                })      
+                .catch(error => {
+                    console.log(error)
+                })    
 
             this.newList = null
         },
@@ -132,6 +141,9 @@ export default {
                     this.editListOffset = -1
                     this.getLists()
                 })
+                .catch(error => {
+                    console.log(error)
+                })
         },
         addItem() {
             let itemName = this.newItem.charAt(0).toUpperCase()+this.newItem.slice(1)
@@ -140,6 +152,9 @@ export default {
                 .then(response => {
                     this.getList(this.shoppingList.id)
                 })            
+                .catch(error => {
+                    console.log(error)
+                })
 
             this.newItem = null
         },
@@ -148,12 +163,18 @@ export default {
                 .then(response => {
                     this.getLists()
                 })                        
+                .catch(error => {
+                    console.log(error)
+                })
         },
         deleteItem(itemId) {
             axios.delete('/api/shoppinglists/'+this.shoppingList.id+'/listitems/'+itemId)
                 .then(response => {
                     this.getList(this.shoppingList.id)
                 })                        
+                .catch(error => {
+                    console.log(error)
+                })
         }
     },
     created() {

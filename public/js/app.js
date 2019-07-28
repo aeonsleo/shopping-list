@@ -1788,6 +1788,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/shoppinglists').then(function (response) {
         console.log(response.data);
         _this.shoppingLists = response.data;
+      })["catch"](function (error) {
+        console.log(error);
       });
     },
     getList: function getList(id) {
@@ -1798,6 +1800,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
         _this2.shoppingList = response.data;
         _this2.renderType = 'detail';
+      })["catch"](function (error) {
+        console.log(error);
       });
     },
     back: function back() {
@@ -1811,6 +1815,8 @@ __webpack_require__.r(__webpack_exports__);
         'name': listName
       }).then(function (response) {
         _this3.getLists();
+      })["catch"](function (error) {
+        console.log(error);
       });
       this.newList = null;
     },
@@ -1833,6 +1839,8 @@ __webpack_require__.r(__webpack_exports__);
         _this4.editListOffset = -1;
 
         _this4.getLists();
+      })["catch"](function (error) {
+        console.log(error);
       });
     },
     addItem: function addItem() {
@@ -1843,6 +1851,8 @@ __webpack_require__.r(__webpack_exports__);
         'name': itemName
       }).then(function (response) {
         _this5.getList(_this5.shoppingList.id);
+      })["catch"](function (error) {
+        console.log(error);
       });
       this.newItem = null;
     },
@@ -1851,6 +1861,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios["delete"]('/api/shoppinglists/' + listId).then(function (response) {
         _this6.getLists();
+      })["catch"](function (error) {
+        console.log(error);
       });
     },
     deleteItem: function deleteItem(itemId) {
@@ -1858,6 +1870,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios["delete"]('/api/shoppinglists/' + this.shoppingList.id + '/listitems/' + itemId).then(function (response) {
         _this7.getList(_this7.shoppingList.id);
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   },
