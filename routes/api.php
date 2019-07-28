@@ -17,11 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-// Route::apiResource('/shopping')
-
-Route::get('/test', function() {
-    return 'Working!';
-});
 
 Route::apiResource('shoppinglists', 'ShoppingListController');
 Route::apiResource('shoppinglists.listitems', 'ListItemController');
