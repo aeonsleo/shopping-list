@@ -1761,10 +1761,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShoppingListIndex',
   data: function data() {
@@ -37827,7 +37823,7 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm.renderType == "list"
       ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12 pt-5" }, [
+          _c("div", { staticClass: "col-12 pt-5" }, [
             _c("h4", [_vm._v("Shopping Lists")]),
             _vm._v(" "),
             _c(
@@ -37838,15 +37834,7 @@ var render = function() {
                   "li",
                   { key: list.id, staticClass: "list-group-item" },
                   [
-                    _c("div", { staticClass: "col-sm-1 float-left" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(index + 1) +
-                          "\n                    "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-9 float-left" }, [
+                    _c("div", { staticClass: "col-9 float-left" }, [
                       _vm.editListOffset != index
                         ? _c(
                             "a",
@@ -37915,7 +37903,7 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-1 float-right" }, [
+                    _c("div", { staticClass: "col-1 float-right text-right" }, [
                       _c(
                         "a",
                         {
@@ -37930,7 +37918,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-1 float-right" }, [
+                    _c("div", { staticClass: "col-1 float-right text-right" }, [
                       _c(
                         "a",
                         {
@@ -37993,7 +37981,18 @@ var render = function() {
     _vm._v(" "),
     _vm.renderType == "detail"
       ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-6 pt-5" }, [
+          _c("div", { staticClass: "col-12 pt-5" }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "javascript:void(0)" },
+                on: { click: _vm.back }
+              },
+              [_vm._v("Back to Lists")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 pt-5" }, [
             _c("h4", [_vm._v(_vm._s(_vm.shoppingList.name))]),
             _vm._v(" "),
             _c(
@@ -38005,15 +38004,11 @@ var render = function() {
                   { key: index, staticClass: "list-group-item" },
                   [
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-sm-1 text-right" }, [
-                        _vm._v(_vm._s(index + 1))
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-10" }, [
+                      _c("div", { staticClass: "col-10" }, [
                         _c("h6", [_vm._v(_vm._s(item.name))])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-1" }, [
+                      _c("div", { staticClass: "col-2 text-right" }, [
                         _c(
                           "a",
                           {
@@ -38070,17 +38065,6 @@ var render = function() {
                   }
                 })
               ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-4 col-sm-offset-2 pt-5" }, [
-            _c(
-              "a",
-              {
-                attrs: { href: "javascript:void(0)" },
-                on: { click: _vm.back }
-              },
-              [_vm._v("Back to Lists")]
             )
           ])
         ])
