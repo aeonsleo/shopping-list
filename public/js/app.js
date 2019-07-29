@@ -1811,7 +1811,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var listName = this.newList.charAt(0).toUpperCase() + this.newList.slice(1);
-      axios.post('/api/shoppinglists/', {
+      axios.post('/api/shoppinglists', {
         'name': listName
       }).then(function (response) {
         console.log(response.data);
