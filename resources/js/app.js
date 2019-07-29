@@ -8,6 +8,7 @@ require('./bootstrap');
 import "bootstrap/dist/css/bootstrap.min.css";
 
 window.Vue = require('vue');
+Vue.use('moment')
 
 /**
  * The following block of code may be used to automatically register your

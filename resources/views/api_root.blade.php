@@ -12,6 +12,7 @@
     <div id="app">
         <shopping-list></shopping-list>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>  
