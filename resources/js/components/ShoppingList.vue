@@ -113,7 +113,7 @@ export default {
         addList() {
             let listName = this.newList.charAt(0).toUpperCase()+this.newList.slice(1)
 
-            axios.post('/api/shoppinglists/', {'name': listName})
+            axios.post('/api/shoppinglists', {'name': listName})
                 .then(response => {
                     console.log(response.data)
                     this.getLists()
