@@ -149,7 +149,7 @@ export default {
         addItem() {
             let itemName = this.newItem.charAt(0).toUpperCase()+this.newItem.slice(1)
 
-            axios.post('/api/shoppinglists/'+this.shoppingList.id+'/listitems/', {'name': itemName})
+            axios.post('/api/shoppinglists/'+this.shoppingList.id+'/listitems', {'name': itemName})
                 .then(response => {
                     this.getList(this.shoppingList.id)
                 })            

@@ -1849,7 +1849,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       var itemName = this.newItem.charAt(0).toUpperCase() + this.newItem.slice(1);
-      axios.post('/api/shoppinglists/' + this.shoppingList.id + '/listitems/', {
+      axios.post('/api/shoppinglists/' + this.shoppingList.id + '/listitems', {
         'name': itemName
       }).then(function (response) {
         _this5.getList(_this5.shoppingList.id);
