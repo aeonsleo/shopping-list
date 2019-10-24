@@ -1769,11 +1769,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ShoppingListIndex',
+  name: "ShoppingListIndex",
   data: function data() {
     return {
-      renderType: 'list',
+      renderType: "list",
       shoppingLists: [],
       shoppingList: {},
       newList: null,
@@ -1788,43 +1800,43 @@ __webpack_require__.r(__webpack_exports__);
   },
   filters: {
     shortDate: function shortDate(value) {
-      if (!value) return '';
+      if (!value) return "";
       value = value.toString();
-      return moment(value).format('MMMM Do YYYY');
+      return moment(value).format("MMMM Do YYYY");
     }
   },
   methods: {
     getLists: function getLists() {
       var _this = this;
 
-      axios.get('/api/shoppinglists').then(function (response) {
+      axios.get("/api/shoppinglists").then(function (response) {
         console.log(response.data);
         _this.shoppingLists = response.data;
       })["catch"](function (error) {
-        console.log('lists', error);
+        console.log("lists", error);
       });
     },
     getList: function getList(id) {
       var _this2 = this;
 
-      console.log('list.id : ' + id);
-      axios.get('/api/shoppinglists/' + id).then(function (response) {
+      console.log("list.id : " + id);
+      axios.get("/api/shoppinglists/" + id).then(function (response) {
         console.log(response.data);
         _this2.shoppingList = response.data;
-        _this2.renderType = 'detail';
+        _this2.renderType = "detail";
       })["catch"](function (error) {
-        console.log('hello', error);
+        console.log("hello", error);
       });
     },
     back: function back() {
-      this.renderType = 'list';
+      this.renderType = "list";
     },
     addList: function addList() {
       var _this3 = this;
 
       var listName = this.newList.charAt(0).toUpperCase() + this.newList.slice(1);
-      axios.post('/api/shoppinglists', {
-        'name': listName
+      axios.post("/api/shoppinglists", {
+        name: listName
       }).then(function (response) {
         console.log(response.data);
 
@@ -1855,8 +1867,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       var editListName = this.editList.name.charAt(0).toUpperCase() + this.editList.name.slice(1);
-      axios.put('/api/shoppinglists/' + this.editList.id, {
-        'name': editListName
+      axios.put("/api/shoppinglists/" + this.editList.id, {
+        name: editListName
       }).then(function (response) {
         _this5.editListOffset = -1;
 
@@ -1869,8 +1881,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this6 = this;
 
       var itemName = this.newItem.charAt(0).toUpperCase() + this.newItem.slice(1);
-      axios.post('/api/shoppinglists/' + this.shoppingList.id + '/listitems', {
-        'name': itemName
+      axios.post("/api/shoppinglists/" + this.shoppingList.id + "/listitems", {
+        name: itemName
       }).then(function (response) {
         _this6.getList(_this6.shoppingList.id);
       })["catch"](function (error) {
@@ -1881,8 +1893,8 @@ __webpack_require__.r(__webpack_exports__);
     deleteList: function deleteList(listId) {
       var _this7 = this;
 
-      if (confirm('Delete List?')) {
-        axios["delete"]('/api/shoppinglists/' + listId).then(function (response) {
+      if (confirm("Delete List?")) {
+        axios["delete"]("/api/shoppinglists/" + listId).then(function (response) {
           _this7.getLists();
         })["catch"](function (error) {
           console.log(error);
@@ -1892,8 +1904,8 @@ __webpack_require__.r(__webpack_exports__);
     deleteItem: function deleteItem(itemId) {
       var _this8 = this;
 
-      if (confirm('Delete item?')) {
-        axios["delete"]('/api/shoppinglists/' + this.shoppingList.id + '/listitems/' + itemId).then(function (response) {
+      if (confirm("Delete item?")) {
+        axios["delete"]("/api/shoppinglists/" + this.shoppingList.id + "/listitems/" + itemId).then(function (response) {
           _this8.getList(_this8.shoppingList.id);
         })["catch"](function (error) {
           console.log(error);
@@ -6415,7 +6427,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nul.list-group li a, ul.list-group li h6{\n    font-size: 1.3rem !important;\n    color: rgb(95, 95, 95);\n}\n.fa-trash {\n    color: lightcoral;\n}\n.fa-pencil {\n    color: lightseagreen;\n}\n", ""]);
+exports.push([module.i, "\nul.list-group {\n  max-height: 75%;\n  overflow-y: scroll;\n}\nul.list-group li a,\nul.list-group li h6 {\n  font-size: 1.3rem !important;\n  color: rgb(95, 95, 95);\n}\n.fa-trash {\n  color: lightcoral;\n}\n.fa-pencil {\n  color: lightseagreen;\n}\n", ""]);
 
 // exports
 
@@ -37901,7 +37913,46 @@ var render = function() {
     _vm.renderType == "list"
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-12 pt-5" }, [
-            _c("h4", [_vm._v("Shopping Lists")]),
+            _c("h4", { staticClass: "pb-1" }, [_vm._v("Shopping Lists")]),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                staticClass: "pb-4",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addList($event)
+                  }
+                }
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.newList,
+                      expression: "newList"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Add new list and hit enter"
+                  },
+                  domProps: { value: _vm.newList },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.newList = $event.target.value
+                    }
+                  }
+                })
+              ]
+            ),
             _vm._v(" "),
             _c(
               "ul",
@@ -38015,44 +38066,6 @@ var render = function() {
                 )
               }),
               0
-            ),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.addList($event)
-                  }
-                }
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.newList,
-                      expression: "newList"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    placeholder: "Add new list and hit enter"
-                  },
-                  domProps: { value: _vm.newList },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.newList = $event.target.value
-                    }
-                  }
-                })
-              ]
             )
           ])
         ])
@@ -38078,51 +38091,14 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-4" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm._f("shortDate")(_vm.shoppingList.created_at)) +
-                    "\n                "
-                )
+                _vm._v(_vm._s(_vm._f("shortDate")(_vm.shoppingList.created_at)))
               ])
             ]),
             _vm._v(" "),
             _c(
-              "ul",
-              { staticClass: "list-group pb-4" },
-              _vm._l(_vm.shoppingList.listitems, function(item, index) {
-                return _c(
-                  "li",
-                  { key: index, staticClass: "list-group-item" },
-                  [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-10" }, [
-                        _c("h6", [_vm._v(_vm._s(item.name))])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-2 text-right" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteItem(item.id)
-                              }
-                            }
-                          },
-                          [_c("span", { staticClass: "fa fa-trash fa-lg red" })]
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
               "form",
               {
+                staticClass: "pb-4",
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -38156,6 +38132,40 @@ var render = function() {
                   }
                 })
               ]
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "list-group pb-4" },
+              _vm._l(_vm.shoppingList.listitems, function(item, index) {
+                return _c(
+                  "li",
+                  { key: index, staticClass: "list-group-item" },
+                  [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-10" }, [
+                        _c("h6", [_vm._v(_vm._s(item.name))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-2 text-right" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteItem(item.id)
+                              }
+                            }
+                          },
+                          [_c("span", { staticClass: "fa fa-trash fa-lg red" })]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              }),
+              0
             )
           ])
         ])
@@ -50512,8 +50522,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/abhishek/work/laravel/shopping-list/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/abhishek/work/laravel/shopping-list/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/abhishek/work/laravel-learn/shopping-list/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/abhishek/work/laravel-learn/shopping-list/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
